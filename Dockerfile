@@ -1,8 +1,21 @@
-# syntax=docker/dockerfile:1
+# Base image
 FROM node:18
-#RUN apk add --no-cache python2 g++ make
-WORKDIR /hotel-management-system-be
-COPY . .
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+COPY package*.json ./
+
+# Install app dependencies
 RUN npm install
-CMD ["npm", "start"]
-EXPOSE 3008
+
+# Bundle app source
+COPY . .
+
+# Creates a "dist" folder with the production build
+RUN npm run build
+
+# Start the server using the production build
+CMD [ "node", "dist/main.js" ]
+
