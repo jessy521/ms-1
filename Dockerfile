@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:20-alpine
+FROM node:18
 #RUN apk add --no-cache python2 g++ make
 WORKDIR /hotel-management-system-be
 COPY . .
