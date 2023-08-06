@@ -66,7 +66,8 @@ export class PropertyController {
   @ApiCreatedResponse({ description: 'this response has created successfully' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   create(
-    @Body(new ParseArrayJsonPipe(['extra', 'location', 'facilities']))
+    @Body()
+    // new ParseArrayJsonPipe(['extra', 'location', 'facilities'])
     createHotelDto: CreatePropertyDto,
     @UploadedFiles() file,
   ) {
@@ -133,7 +134,8 @@ export class PropertyController {
   @UseInterceptors(FilesInterceptor('file', 20, propertyPicStorage))
   update(
     @Param('id') id: string,
-    @Body(new ParseArrayJsonPipe(['extra', 'location', 'facilities']))
+    @Body()
+    // new ParseArrayJsonPipe(['extra', 'location', 'facilities'])
     updateHotelDto: UpdatePropertyDto,
     @GetUser() user: User,
     @UploadedFiles() file,
